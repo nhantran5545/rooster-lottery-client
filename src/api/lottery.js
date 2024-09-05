@@ -32,10 +32,8 @@ export const getCurrentUserBet = async (accountId) => {
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {
-      // If 404, return null indicating no current bet
       return null;
     } else {
-      // For other errors, throw the error to handle it elsewhere
       throw error;
     }
   }
