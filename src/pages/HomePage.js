@@ -1,77 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../components/Layout";
+import PhotoBooth from "../components/PhotoBooth";
+import CameraIcon from "../assets/images/icon_camera.png";
+import Hynd from "../assets/images/title.png";
+import Background from "../assets/images/background.png";
+import photo1 from "../assets/images/photo.JPG";
+import hynd from "../assets/images/hynd.JPG";
+import photo2 from "../assets/images/photo.JPG";
+import photo3 from "../assets/images/photo.JPG";
 import Button from "../components/UI/button";
 import { useNavigate } from "react-router-dom";
-import { fetchAccountByPhone } from "../api/account";
-import Input from "../components/UI/Input";
+import PhotoBooth2 from "../components/PhotoBooth2";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleLogin = async () => {
-    try {
-      const response = await fetchAccountByPhone(phoneNumber);
-      const account = response.account;
-      setMessage(`Welcome back, ${account.fullName}`);
-      localStorage.setItem("accountId", account.accountId);
-      navigate("/bet");
-    } catch (error) {
-      setMessage("Login failed. Please check your phone number.");
-    }
-  };
-
   return (
-    <Layout>
-      <div className="py-20">
-        <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
-          <div
-            className="hidden lg:block lg:w-1/2 bg-cover"
-            style={{
-              backgroundImage:
-                'url("https://www.wikihow.com/images/2/28/Choose-Lottery-Numbers-Step-20-Version-3.jpg")',
-            }}
-          />
-          <div className="w-full p-8 lg:w-1/2">
-            <h2 className="text-2xl font-semibold text-gray-700 text-center">
-              Rooster Lottery
-            </h2>
-            <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="border-b w-1/5 lg:w-1/4" />
-            </div>
-            <div className="mt-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Phone
-              </label>
-              <Input
-                type="text"
-                placeholder="Phone Number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-            </div>
-            {message && (
-              <p className="mt-4 text-center text-red-500">{message}</p>
-            )}
-            <div className="mt-8">
-              <Button onClick={handleLogin}>Login</Button>
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="border-b w-1/5 md:w-1/4" />
-              <button
-                className="text-xs text-gray-500 uppercase"
-                onClick={() => navigate("/register")}
-              >
-                or register
-              </button>
-              <span className="border-b w-1/5 md:w-1/4" />
-            </div>
-          </div>
+    <div
+      className="w-screen h-screen bg-cover object-c bg-center "
+      style={{ backgroundImage: `url(${Background})` }}
+    >
+      <div className="flex items-center justify-center w-full h-full bg-[#333333] bg-opacity-15">
+        {/* Phần logo có animation nhịp thở hấp hối */}
+        <div className="fixed top-0 mt-10 left-0 w-full py-4 flex justify-center items-center gap-2 z-50">
+          <img src={Hynd} alt="HYND CHECK" className="animate-pulse-fast" />
         </div>
+        <div className="bg-white w-[70%] h-[55%] px-44 mt-14 rounded-3xl items-center justify-center">
+          <h1 className="font-[LeagueGothic-Regular] text-3xl mt-20 mb-14 text-pink-300">
+            "Preserve your precious moments"
+          </h1>
+          <button
+            onClick={() => navigate("/welcome")}
+            className="relative mt px-20 py-2 font-bold rounded-lg bg-[#FF75A6] text-black shadow-lg 
+            before:absolute before:inset-1 before:bg-[#FFDCE8] before:my-2 before:mx-2 before:rounded-sm  before:transition-all before:duration-300
+            hover:border-pink-200 hover:bg-black hover:before:bg-pink-500 hover:text-white"
+          >
+            <span className="relative z-10 text-[45px] font-[Jersey15-Regular] tracking-wider">
+              START
+            </span>
+            <span
+              className="absolute right-7 top-[50px] -translate-y-1/2 w-2.5 h-2.5 bg-green-500 rounded-full shadow-md 
+              after:content-[''] after:absolute after:w-2.5 after:h-2.5 after:bg-pink-300 after:rounded-full after:-top-5 after:left-0"
+            ></span>
+          </button>
+        </div>
+        <PhotoBooth images={[photo1, photo2, photo3]} />
+        <PhotoBooth2 images={[hynd, hynd, hynd, hynd]} />
       </div>
-    </Layout>
+    </div>
   );
 };
 

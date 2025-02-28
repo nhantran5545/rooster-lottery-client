@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Jersey15-Regular";
+  src: url("assets/fonts/Jersey15-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LeagueGothic-Regular";
+  src: url("assets/fonts/LeagueGothic-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LeagueGothic-CondensedRegular";
+  src: url("assets/fonts/LeagueGothic_Condensed-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "LeagueGothic-SemiCondensedRegular";
+  src: url("assets/fonts/LeagueGothic_SemiCondensed-Regular.ttf")
+    format("truetype");
+}
+
+@keyframes pulse-fast {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 3s ease-in-out infinite;
+}
+.animate-pulse-slow {
+  animation: pulse-fast 1s ease-in-out infinite;
+}
+
+#screenshot-container {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+  background: white; /* Đảm bảo nền không trong suốt */
+}
+p.screenshot-text {
+  position: relative;
+  bottom: -10px; /* Điều chỉnh khoảng cách với ảnh */
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.sepia {
+  filter: sepia(100%);
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+.none {
+  filter: none;
+}
+
+/* Soft filter */
+.soft {
+  filter: brightness(1.1) contrast(0.9) saturate(1);
+}
+
+/* Vibrant filter (tươi tắn) */
+.vibrant {
+  filter: brightness(1.1) contrast(1.1) saturate(1.5);
+}
+
+/* Smooth skin filter (mịn da) */
+.smooth-skin {
+  filter: brightness(1.1) contrast(0.9) saturate(0.8) blur(1px);
+}
+
+/* Brighten filter (trắng hơn) */
+.brighten {
+  filter: brightness(1.4) contrast(0.9);
+}
